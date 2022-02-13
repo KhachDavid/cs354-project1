@@ -1,0 +1,5 @@
+Id Title                     Year  Director   Rating    Revenue
+1  The American              2010  Corbijn       6.3   67800000
+2  Black Swan                2010  Aronofsky     8.0  329000000
+3  How To Train Your Dragon  2010  Sanders       8.1  495000000
+4  Inception                 2010  Nolan         8.8  836836967
