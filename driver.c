@@ -25,11 +25,8 @@ int main() {
     long long dollars[10];
 
     // declare a string that is equal to   test  movie   four  
-    char test_movie[1024] = "  test  movie   four  ";
-    Clean_Whitespace(test_movie);
-    printf("%s\n", test_movie);
 
-    Read_CSV("movies2.csv", csv, &num_movies);
+    Read_CSV("movies1.csv", csv, &num_movies);
     Split(csv, num_movies, titles, years, directors, ratings, dollars);
     Print_Table(num_movies, titles, years, directors, ratings, dollars);
 

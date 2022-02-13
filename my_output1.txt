@@ -1,6 +1,5 @@
-Id Title                 Year  Director  Rating    Revenue
-1  Test Movie One        1234  Adams       10.0  123456789
-2  B                     2022  Director     9.9  123456000
-3  Test Movie Three      2022  Critic       1.2  123000000
-4  Test M Ovie Fo U R    2022  Dan          5.0  123000000
-5  Movie Fi V E          2022  Erik         8.0     123000
+Id Title                     Year  Director   Rating    Revenue
+1  The American              2010  Corbijn       6.3   67800000
+2  Black Swan                2010  Aronofsky     8.0  329000000
+3  How To Train Your Dragon  2010  Sanders       8.1  495000000
+4  Inception                 2010  Nolan         8.8  836836967

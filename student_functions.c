@@ -69,9 +69,6 @@ int contains(int arr[], int size, int value) {
 
 void Clean_Whitespace(char str[]) {
 
-    int fake_index[1024];
-    int fake_index_size = 0;
-
     // check if string is empty
     if (str[0] == '\0') {
         return;
@@ -104,15 +101,39 @@ void Clean_Whitespace(char str[]) {
                 l++;
             }
 
-            for (int m = k; m < l; m++) {
-                //str[m] = str[l + m - k];
-                // check if m + 1 is l and skip if it is
+            int number_of_spaces_to_remove = l - k - 1;
 
-                if (l + m - k < length) {
-                    // remove str m + 1 and put all the rest of the string to left by 1
-                    swap(str, m + 1, l + m - k);
+            if (number_of_spaces_to_remove == 0) {
+                k++;
+                continue;
+            }
+
+            // find the length of the word that follows the space
+
+            int space_index_start = k + 1;
+            int space_index_end = k + number_of_spaces_to_remove ;
+
+            for (int i = space_index_end; i >= space_index_start; i--) {
+                int current_index = i;
+                while (str[current_index + 1] != ' ' && str[current_index + 1] != '\t' && str[current_index + 1] != '\n' && str[current_index + 1] != '\r') {
+                    swap(str, current_index, current_index + 1);
+                    current_index++;
                 }
             }
+
+            //for (int m = k; m < l; m++) {
+            //    //str[m] = str[l + m - k];
+            //    // check if m + 1 is l and skip if it is
+            //    if (m + 1 == l) {
+            //        break;
+            //    }
+//
+            //    if (l + m - k < length) {
+            //        // remove str m + 1 and put all the rest of the string to left by 1
+            //        // keep swapping until hit null
+            //        swap(str, m + 1, l + m - k);
+            //    }
+            //}
             j -= (l - k - 1);
         }
 
@@ -705,9 +726,7 @@ void Print_Table(int num_movies, char titles[10][1024], int years[10], char dire
             if (revenue_column[i][j] == ' ') {
                 num_spaces++;
             }
-        }
-        
-        Clean_Whitespace(revenue_column[i]);
+        }        
 
         char tmpColumn[1024];
         // add num_spaces white spaces to the beginning of revenue_column
