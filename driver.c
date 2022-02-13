@@ -24,14 +24,14 @@ int main() {
     float ratings[10];
     long long dollars[10];
 
+    // declare a string that is equal to   test  movie   four  
+    char test_movie[1024] = "  test  movie   four  ";
+    Clean_Whitespace(test_movie);
+    printf("%s\n", test_movie);
 
     Read_CSV("movies2.csv", csv, &num_movies);
     Split(csv, num_movies, titles, years, directors, ratings, dollars);
     Print_Table(num_movies, titles, years, directors, ratings, dollars);
-
-    char* search_title = "  test  movie   four  ";
-    Clean_Whitespace(search_title);
-    printf("%s\n", search_title);
 
     return 0;
 }

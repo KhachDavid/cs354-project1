@@ -54,7 +54,24 @@ void swap(char str[], int i, int j) {
     str[j] = temp;
 }
 
+void insert_into_array(int arr[], int size, int value) {
+    arr[size] = value;
+}
+
+int contains(int arr[], int size, int value) {
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == value) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
 void Clean_Whitespace(char str[]) {
+
+    int fake_index[1024];
+    int fake_index_size = 0;
+
     // check if string is empty
     if (str[0] == '\0') {
         return;
@@ -90,11 +107,9 @@ void Clean_Whitespace(char str[]) {
             for (int m = k; m < l; m++) {
                 //str[m] = str[l + m - k];
                 // check if m + 1 is l and skip if it is
-                if (m == l) {
-                    break;
-                }
 
-                else if (l + m - k < length) {
+                if (l + m - k < length) {
+                    // remove str m + 1 and put all the rest of the string to left by 1
                     swap(str, m + 1, l + m - k);
                 }
             }
@@ -114,7 +129,8 @@ void Clean_Whitespace(char str[]) {
                 }
 
                 else if (l + m - k < length) {
-                    swap(str, m , l + m - k);
+                    // remove str m + 1
+                    swap(str, m, l + m - k);
                 }
             }
             j -= (l - k - 1);
@@ -556,7 +572,7 @@ void Print_Table(int num_movies, char titles[10][1024], int years[10], char dire
     // place the rating in the rating column
     sprintf(rating_column[0], "Rating");    
     // place the revenue in the revenue column
-    sprintf(revenue_column[0], "   Revenue");
+    sprintf(revenue_column[0], "    Revenue");
 
     for (int i = 1; i <= num_movies; i++) {
 
@@ -590,6 +606,8 @@ void Print_Table(int num_movies, char titles[10][1024], int years[10], char dire
             }
             title_column[i][longest_movie] = '\0';
         }
+
+        Fix_Case(title_column[i]);
 
         // place the year in the year column
         sprintf(year_column[i], "%d", years[i - 1]);
