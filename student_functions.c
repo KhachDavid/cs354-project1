@@ -83,11 +83,15 @@ void Clean_Whitespace(char str[]) {
     int k = 0;
     while (k < j) {
         if (str[k] == ' ') {
+            // must keep one space
             int l = k + 1;
+
+            // see how long the character that should be removed is
             while (str[l] == ' ' || str[l] == '\t' || str[l] == '\n' || str[l] == '\r') {
                 l++;
             }
 
+            // get the number of spaces to remove
             int number_of_spaces_to_remove = l - k - 1;
 
             if (number_of_spaces_to_remove == 0) {
@@ -95,11 +99,17 @@ void Clean_Whitespace(char str[]) {
                 continue;
             }
 
+            // get the starting and ending indices of removable characers
             int space_index_start = k + 1;
             int space_index_end = k + number_of_spaces_to_remove ;
 
+            // start removing characters
+            // start the loop from the last character to be removed
             for (int i = space_index_end; i >= space_index_start; i--) {
                 int current_index = i;
+                // keep swapping the removed character until it is being swapped with another character that must be removed
+
+                // in essence this works like a bubble sort
                 while (str[current_index + 1] != ' ' && str[current_index + 1] != '\t' && str[current_index + 1] != '\n' && str[current_index + 1] != '\r') {
                     swap(str, current_index, current_index + 1);
                     current_index++;
