@@ -54,19 +54,6 @@ void swap(char str[], int i, int j) {
     str[j] = temp;
 }
 
-void insert_into_array(int arr[], int size, int value) {
-    arr[size] = value;
-}
-
-int contains(int arr[], int size, int value) {
-    for (int i = 0; i < size; i++) {
-        if (arr[i] == value) {
-            return 1;
-        }
-    }
-    return 0;
-}
-
 void Clean_Whitespace(char str[]) {
 
     // check if string is empty
@@ -108,8 +95,6 @@ void Clean_Whitespace(char str[]) {
                 continue;
             }
 
-            // find the length of the word that follows the space
-
             int space_index_start = k + 1;
             int space_index_end = k + number_of_spaces_to_remove ;
 
@@ -120,20 +105,6 @@ void Clean_Whitespace(char str[]) {
                     current_index++;
                 }
             }
-
-            //for (int m = k; m < l; m++) {
-            //    //str[m] = str[l + m - k];
-            //    // check if m + 1 is l and skip if it is
-            //    if (m + 1 == l) {
-            //        break;
-            //    }
-//
-            //    if (l + m - k < length) {
-            //        // remove str m + 1 and put all the rest of the string to left by 1
-            //        // keep swapping until hit null
-            //        swap(str, m + 1, l + m - k);
-            //    }
-            //}
             j -= (l - k - 1);
         }
 
@@ -639,11 +610,11 @@ void Print_Table(int num_movies, char titles[10][1024], int years[10], char dire
             year_length++;
         }
 
-        if (year_length < 6) {
-            for (int j = year_length; j < 6; j++) {
+        if (year_length < LONGEST_RATING) {
+            for (int j = year_length; j < LONGEST_RATING; j++) {
                 year_column[i][j] = ' ';
             }
-            year_column[i][6] = '\0';
+            year_column[i][LONGEST_RATING] = '\0';
         }
 
         // place the director in the director column
@@ -711,18 +682,18 @@ void Print_Table(int num_movies, char titles[10][1024], int years[10], char dire
             revenue_length++;
         }
 
-        if (revenue_length < 11) {
-            for (int j = revenue_length; j < 11; j++) {
+        if (revenue_length < LONGEST_REVENUE) {
+            for (int j = revenue_length; j < LONGEST_REVENUE; j++) {
                 revenue_column[i][j] = ' ';
             }
-            revenue_column[i][11] = '\0';
+            revenue_column[i][LONGEST_REVENUE] = '\0';
         }
 
         // swap the space characters to come before the numbers in revenue_column
         
         // count the number of spaces in revenue_column
         num_spaces = 0;
-        for (int j = 0; j < 11; j++) {
+        for (int j = 0; j < LONGEST_REVENUE; j++) {
             if (revenue_column[i][j] == ' ') {
                 num_spaces++;
             }
@@ -736,17 +707,17 @@ void Print_Table(int num_movies, char titles[10][1024], int years[10], char dire
 
         // add the revenue_column to tmpColumn
         k = 0;
-        for (int j = num_spaces; j < 11; j++) {
+        for (int j = num_spaces; j < LONGEST_REVENUE; j++) {
             tmpColumn[j] = revenue_column[i][k];
             k++;
         }
-        tmpColumn[11] = '\0';
+        tmpColumn[LONGEST_REVENUE] = '\0';
 
         // copy tmpColumn to revenue_column
         sprintf(revenue_column[i], "%s", tmpColumn);
 
         // loop over revenue column and remove any space that comes after a number
-        for (int j = 1; j < 11; j++) {
+        for (int j = 1; j < LONGEST_REVENUE; j++) {
             if (revenue_column[i][j] == ' ' && revenue_column[i][j - 1] > '0' && revenue_column[i][j - 1] < '9') {
                 revenue_column[i][j] = '\0';
             }

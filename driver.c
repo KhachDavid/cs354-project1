@@ -15,7 +15,6 @@ void Read_CSV(char *filename, char csv[10][1024], int *num_movies) {
 }
 
 int main() {
-
     char csv[10][1024]; // data structure for the entire movie csv file
     int num_movies;
     char titles[10][1024];
@@ -25,7 +24,6 @@ int main() {
     long long dollars[10];
 
     // declare a string that is equal to   test  movie   four  
-
     Read_CSV("movies1.csv", csv, &num_movies);
     Split(csv, num_movies, titles, years, directors, ratings, dollars);
     Print_Table(num_movies, titles, years, directors, ratings, dollars);
